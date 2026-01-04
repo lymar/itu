@@ -44,7 +44,7 @@ func main() {
 
 ## Documentation
 
-API docs are published on pkg.go.dev. Examples live next to the code (see `*_test.go` with `Example...` functions).
+API docs are published on [pkg.go.dev](https://pkg.go.dev/github.com/lymar/itu). Examples live next to the code (see `*_test.go` with `Example...` functions).
 
 For local browsing, you can run:
 
