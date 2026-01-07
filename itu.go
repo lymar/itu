@@ -6,18 +6,6 @@ package itu
 
 import "iter"
 
-// Map returns a lazy iterator that yields fn(x) for each element x in seq.
-// Values are produced only as the returned iterator is consumed.
-func Map[T, R any](seq iter.Seq[T], fn func(T) R) iter.Seq[R] {
-	return func(yield func(R) bool) {
-		for v := range seq {
-			if !yield(fn(v)) {
-				return
-			}
-		}
-	}
-}
-
 // Filter returns a lazy iterator over the elements of seq for which pred returns true.
 // Elements are tested only as the returned iterator is consumed.
 func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {

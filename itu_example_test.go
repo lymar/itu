@@ -7,20 +7,6 @@ import (
 	"github.com/lymar/itu"
 )
 
-func ExampleMap() {
-	input := slices.Values([]int{0, 1, 2})
-	result := itu.Map(input, func(v int) string {
-		return fmt.Sprintf("[ %d ]", v+1)
-	})
-	for v := range result {
-		fmt.Println(v)
-	}
-	// Output:
-	// [ 1 ]
-	// [ 2 ]
-	// [ 3 ]
-}
-
 func ExampleFilter() {
 	input := slices.Values([]int{0, 1, 2, 3, 4, 5})
 	evenNumbers := itu.Filter(input, func(v int) bool {
