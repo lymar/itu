@@ -6,20 +6,6 @@ package itu
 
 import "iter"
 
-// Filter returns a lazy iterator over the elements of seq for which pred returns true.
-// Elements are tested only as the returned iterator is consumed.
-func Filter[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
-	return func(yield func(T) bool) {
-		for v := range seq {
-			if pred(v) {
-				if !yield(v) {
-					return
-				}
-			}
-		}
-	}
-}
-
 // Reduce folds seq from left to right, starting with acc.
 // For each element x in seq it updates the accumulator as: acc = fn(acc, x).
 // Reduce consumes seq eagerly and returns the final accumulator.
