@@ -4,12 +4,15 @@
 
 It provides composable, lazy building blocks for working with Go’s `iter` package.
 
+Docs: https://pkg.go.dev/github.com/lymar/itu
+
 ## Goals
 
 - **Least surprise**: familiar iterator-style utilities for people coming from other ecosystems.
 - **Lazy by default**: values are produced only when the iterator is consumed.
 - **Streaming-friendly**: designed to work well with potentially large or infinite sequences.
 - **Type-safe**: uses Go generics.
+- **No wrapper types**: doesn’t add types like `Pair`/`Tuple`/`Option`; it composes standard `iter` types.
 - **Minimal dependencies**: built around `iter.Seq` and related iterator types.
 
 ## Installation
