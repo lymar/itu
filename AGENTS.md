@@ -25,6 +25,8 @@ Most functions here operate on `iter.Seq` / `iter.Seq2` and have important seman
 - If the function returns an iterator, say that it is **lazy** and that values are produced only as the returned iterator is consumed.
 - If the function consumes the input iterator to produce a result, say it **consumes eagerly**.
 
+Only include laziness/eagerness notes when they add meaningful information for the API user. For trivial helpers where the behavior is obvious (e.g., an empty iterator), prefer a shorter comment without mentioning laziness.
+
 ### Iteration behavior
 
 - Describe **what each yielded element/pair represents**.
