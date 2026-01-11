@@ -107,7 +107,7 @@ Use one of:
 
 Use a scope that matches the area being changed. Common scopes in this repo:
 
-- `range`, `zip`, `reduce`, `filter`, `map`, `count`, `chain`
+- `range`, `zip`, `fold`, `filter`, `map`, `count`, `chain`
 - `docs`, `tests`, `dev`, `ci`, `agents`
 
 ## Summary line rules
@@ -133,7 +133,7 @@ If the change is breaking, mark it explicitly:
 ## Examples
 
 - `feat(zip): add Zip that stops when either input ends`
-- `feat(reduce): add Reduce2 for Seq2 pairs`
+- `feat(fold): add Fold2 for Seq2 pairs`
 - `fix(range): stop iteration on overflow instead of wrapping`
 - `refactor(range): move Integer constraint to range.go`
 - `docs: clarify laziness vs eagerness in package docs`
