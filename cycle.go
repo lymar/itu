@@ -36,20 +36,9 @@ func Cycle[T any](seq iter.Seq[T]) iter.Seq[T] {
 //
 // If seq yields no pairs, Cycle2 returns an empty iterator.
 func Cycle2[A, B any](seq iter.Seq2[A, B]) iter.Seq2[A, B] {
-	type pair struct {
-		A A
-		B B
-	}
-
-	var items []pair
-	next, stop := iter.Pull2(seq)
-	defer stop()
-	for {
-		a, b, ok := next()
-		if !ok {
-			break
-		}
-		items = append(items, pair{A: a, B: b})
+	var items []pair[A, B]
+	for a, b := range seq {
+		items = append(items, pair[A, B]{First: a, Second: b})
 	}
 	if len(items) == 0 {
 		return Empty2[A, B]()
@@ -58,7 +47,7 @@ func Cycle2[A, B any](seq iter.Seq2[A, B]) iter.Seq2[A, B] {
 	return func(yield func(A, B) bool) {
 		for {
 			for _, p := range items {
-				if !yield(p.A, p.B) {
+				if !yield(p.First, p.Second) {
 					return
 				}
 			}

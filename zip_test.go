@@ -1,24 +1,10 @@
 package itu
 
 import (
-	"iter"
 	"reflect"
 	"slices"
 	"testing"
 )
-
-type pair[A, B any] struct {
-	First  A
-	Second B
-}
-
-func collect2[A, B any](seq iter.Seq2[A, B]) []pair[A, B] {
-	var out []pair[A, B]
-	for a, b := range seq {
-		out = append(out, pair[A, B]{First: a, Second: b})
-	}
-	return out
-}
 
 func TestZip_SameLength(t *testing.T) {
 	seq1 := slices.Values([]int{1, 2, 3})
