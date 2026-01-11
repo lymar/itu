@@ -55,3 +55,41 @@ func Take2[K, V any](seq iter.Seq2[K, V], n int) iter.Seq2[K, V] {
 		}
 	}
 }
+
+// TakeWhile returns a lazy iterator that yields elements from seq while pred returns true.
+//
+// It yields consecutive values from seq until pred returns false for a value. As soon as
+// pred returns false, iteration stops and that value is not yielded.
+//
+// Values are tested and produced only as the returned iterator is consumed.
+func TakeWhile[T any](seq iter.Seq[T], pred func(T) bool) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for v := range seq {
+			if !pred(v) {
+				return
+			}
+			if !yield(v) {
+				return
+			}
+		}
+	}
+}
+
+// TakeWhile2 returns a lazy iterator that yields pairs (k, v) from seq while pred returns true.
+//
+// It yields consecutive pairs from seq until pred returns false for a pair. As soon as pred
+// returns false, iteration stops and that pair is not yielded.
+//
+// Pairs are tested and produced only as the returned iterator is consumed.
+func TakeWhile2[K, V any](seq iter.Seq2[K, V], pred func(K, V) bool) iter.Seq2[K, V] {
+	return func(yield func(K, V) bool) {
+		for k, v := range seq {
+			if !pred(k, v) {
+				return
+			}
+			if !yield(k, v) {
+				return
+			}
+		}
+	}
+}
