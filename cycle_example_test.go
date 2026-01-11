@@ -27,3 +27,22 @@ func ExampleCycle() {
 	// 1
 	// 2
 }
+
+func ExampleCycle2() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
+	input := slices.All([]string{"a", "b"})
+	cycle := itu.Cycle2(input)
+	first5 := itu.Take2(cycle, 5)
+
+	// Cycle2 is effectively infinite for non-empty inputs, so we take N pairs.
+	for i, v := range first5 {
+		fmt.Printf("%d %s\n", i, v)
+	}
+
+	// Output:
+	// 0 a
+	// 1 b
+	// 0 a
+	// 1 b
+	// 0 a
+}
