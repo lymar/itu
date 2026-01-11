@@ -65,3 +65,67 @@ Before submitting, verify:
 - Laziness/eagerness is explicitly stated where applicable.
 - Edge cases and stopping conditions are covered when non-trivial.
 - Panics/overflow behavior is documented if applicable.
+
+# Git Commit Message Guidelines
+
+This repository uses Conventional Commits for Git commit messages. All commit messages should be written in English.
+
+## Format
+
+Use this format:
+
+`type(scope): summary`
+
+- `scope` is optional, but recommended when it adds clarity.
+- Use lowercase for `type` and `scope`.
+
+## Types
+
+Use one of:
+
+- `feat`: add new functionality
+- `fix`: fix a bug or incorrect behavior
+- `docs`: documentation-only changes
+- `refactor`: code change that neither fixes a bug nor adds a feature
+- `test`: add or update tests/examples
+- `perf`: performance improvements
+- `ci`: CI/workflow changes
+- `chore`: maintenance work (tooling, cleanup, etc.)
+
+## Scopes
+
+Use a scope that matches the area being changed. Common scopes in this repo:
+
+- `range`, `zip`, `reduce`, `filter`, `map`, `count`, `chain`
+- `docs`, `tests`, `dev`, `ci`, `agents`
+
+## Summary line rules
+
+- Write the summary in the imperative mood (e.g., "add", "fix", "refactor").
+- Keep the summary concise (aim for ≤ 72 characters).
+- Do not end the summary with a period.
+
+## Body rules
+
+Add a commit body when it helps explain the change.
+
+- Focus on the "why" and any important semantic changes.
+- For iterator utilities, call out behavior changes explicitly (laziness/eagerness, stopping conditions, empty inputs, overflow/panic behavior).
+
+## Breaking changes
+
+If the change is breaking, mark it explicitly:
+
+- Use `!` after `type` or `scope`: `feat(range)!: change RangeBy step==0 behavior`
+- If needed, also include a `BREAKING CHANGE:` paragraph in the body describing what changed and how to migrate.
+
+## Examples
+
+- `feat(zip): add Zip that stops when either input ends`
+- `feat(reduce): add Reduce2 for Seq2 pairs`
+- `fix(range): stop iteration on overflow instead of wrapping`
+- `refactor(range): move Integer constraint to range.go`
+- `docs: clarify laziness vs eagerness in package docs`
+- `test(zip): add ExampleZip output`
+- `ci: run tests on Go 1.23`
+- `chore(dev): update doc.sh instructions`
