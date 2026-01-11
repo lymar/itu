@@ -15,6 +15,7 @@ func ExampleSkip() {
 }
 
 func ExampleSkip2() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
 	all := slices.All([]string{"a", "b", "c", "d"})
 	seq := itu.Skip2(all, 2)
 	for i, v := range seq {
@@ -34,6 +35,7 @@ func ExampleSkipWhile() {
 }
 
 func ExampleSkipWhile2() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
 	all := slices.All([]string{"a", "b", "stop", "c"})
 	seq := itu.SkipWhile2(all, func(_ int, v string) bool { return v != "stop" })
 	for i, v := range seq {

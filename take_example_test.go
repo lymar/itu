@@ -15,6 +15,7 @@ func ExampleTake() {
 }
 
 func ExampleTake2() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
 	all := slices.All([]string{"a", "b", "c"})
 	seq := itu.Take2(all, 2)
 	for i, v := range seq {
@@ -34,6 +35,7 @@ func ExampleTakeWhile() {
 }
 
 func ExampleTakeWhile2() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
 	all := slices.All([]string{"a", "b", "stop", "c"})
 	seq := itu.TakeWhile2(all, func(_ int, v string) bool { return v != "stop" })
 	for i, v := range seq {

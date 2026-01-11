@@ -50,6 +50,7 @@ func ExampleMapTo2() {
 }
 
 func ExampleMap2To() {
+	// slices.All returns an iter.Seq2 over index/value pairs.
 	input := slices.All([]string{"x", "y"})
 	result := itu.Map2To(input, func(i int, s string) string {
 		return fmt.Sprintf("%d=%s", i, s)
