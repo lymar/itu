@@ -58,6 +58,15 @@ Only include laziness/eagerness notes when they add meaningful information for t
 - Include `// Output:` blocks for deterministic output.
 - If an example uses a standard library helper whose behavior isn’t obvious (e.g., `slices.All`, `maps.All`), add a short explanatory comment directly above its use.
 
+## Pairs
+
+- When implementing helpers/functions in package `itu` that need a concrete “pair of values” type (e.g., to collect/compare results from an `iter.Seq2`), reuse the existing internal `pair[A, B]` type (and `collect2` helper) from `pair.go` instead of defining ad-hoc pair structs.
+
+  Exported APIs should not expose this unexported type; return `iter.Seq2` (or other exported types) at the public surface.
+
+- When writing tests in package `itu` that need to collect/compare pairs from an `iter.Seq2`, reuse the same internal `pair[A, B]` type and `collect2` helper from `pair.go`.
+- Tests in package `itu_test` cannot access these unexported helpers; in that case, assert via concrete values/loops or use exported/stdlib helpers as appropriate.
+
 ## Style checklist (quick)
 
 Before submitting, verify:
