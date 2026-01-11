@@ -56,7 +56,7 @@ Only include laziness/eagerness notes when they add meaningful information for t
 - Add Go examples in `*_example_test.go` files using `ExampleXxx` functions.
 - Examples should be small and show typical usage.
 - Include `// Output:` blocks for deterministic output.
-- If an example uses a standard library helper whose behavior isn’t obvious (e.g., `slices.All`, `maps.All`), add a short explanatory comment.
+- If an example uses a standard library helper whose behavior isn’t obvious (e.g., `slices.All`, `maps.All`), add a short explanatory comment directly above its use.
 
 ## Style checklist (quick)
 
