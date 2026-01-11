@@ -1,22 +1,9 @@
 package itu
 
 import (
-	"iter"
 	"slices"
 	"testing"
 )
-
-func collectN[T any](seq iter.Seq[T], n int) []T {
-	if n <= 0 {
-		return nil
-	}
-	out := make([]T, 0, n)
-	seq(func(v T) bool {
-		out = append(out, v)
-		return len(out) < n
-	})
-	return out
-}
 
 func TestRangeBy_PositiveStep(t *testing.T) {
 	got := slices.Collect(RangeBy(0, 5, 2))
@@ -197,7 +184,7 @@ func TestRange_EmptyWhenStartAtOrPastEnd(t *testing.T) {
 }
 
 func TestRangeFromBy_PositiveStep_TakeFirstN(t *testing.T) {
-	got := collectN(RangeFromBy(5, 2), 5)
+	got := slices.Collect(Take(RangeFromBy(5, 2), 5))
 	want := []int{5, 7, 9, 11, 13}
 	if !slices.Equal(got, want) {
 		t.Fatalf("RangeFromBy(5, 2) first 5 = %v, want %v", got, want)
@@ -205,7 +192,7 @@ func TestRangeFromBy_PositiveStep_TakeFirstN(t *testing.T) {
 }
 
 func TestRangeFromBy_NegativeStep_TakeFirstN(t *testing.T) {
-	got := collectN(RangeFromBy(5, -2), 4)
+	got := slices.Collect(Take(RangeFromBy(5, -2), 4))
 	want := []int{5, 3, 1, -1}
 	if !slices.Equal(got, want) {
 		t.Fatalf("RangeFromBy(5, -2) first 4 = %v, want %v", got, want)
@@ -214,7 +201,7 @@ func TestRangeFromBy_NegativeStep_TakeFirstN(t *testing.T) {
 
 func TestRangeFromBy_ZeroStep(t *testing.T) {
 	const n = 10
-	got := collectN(RangeFromBy(7, 0), n)
+	got := slices.Collect(Take(RangeFromBy(7, 0), n))
 	if len(got) != n {
 		t.Fatalf("RangeFromBy(7, 0) produced %d values, want %d", len(got), n)
 	}
